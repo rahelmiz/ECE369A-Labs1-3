@@ -44,9 +44,15 @@ module InstructionMemory(Address, Instruction);
     //initialize memory 
     integer i;
     initial begin
-        for (i = 0; i < 127; ++i)
+        for (i = 0; i < 127; i = i + 1)
             memory[i] = 3*i;
+     end
+     
+     always @(Address)
+     begin
+        assign Instruction = memory[Address[8:2]];
      end 
-    assign Instruction = memory[Address[8:2]];
+    
+    
     
 endmodule

@@ -25,8 +25,16 @@ module PCAdder_tb();
 		
 		#10;
 		$display ("PCResult = %d, PCAddResult = %d", PCResult, PCAddResult);
+		
+		#10
+		PCResult <= 4;
+		
+		#10
+		PCResult <= 12;
+		
+		#10
+		PCResult <= 0;
 	
 	end
 
 endmodule
-

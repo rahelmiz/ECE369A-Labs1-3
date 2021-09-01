@@ -28,7 +28,29 @@ module ProgramCounter_tb();
 
 	initial begin
 	
-    /* Please fill in the implementation here... */
+    /* Please fill in the implementation here... */Reset <= 1;
+		Address <= 0;
+		@(posedge Clk)
+		#5 Reset <= 0;
+		@(posedge Clk);
+		@(posedge Clk);
+		#5 Address <= 0;
+		@(posedge Clk);
+		@(posedge Clk);
+		#5 Address <= 4;
+		@(posedge Clk);
+		#5 Address <= 8;
+		@(posedge Clk)
+		#5 Address <= 12;
+		@(posedge Clk);
+		#5 Address <= 16;
+		@(posedge Clk);
+		#5 Address <= 20;
+		@(posedge Clk);
+		#5 Address <= 24;
+		@(posedge Clk);
+		#5 Reset <= 1;
+		@(posedge Clk);
 	
 	end
 
