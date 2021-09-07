@@ -29,7 +29,7 @@ module PCAdder(PCResult, PCAddResult);
     
     always @(PCResult, PCAddResult) //Whenever either of the two change
     begin
-        PCAddResult <= PCResult + 4;
+        PCAddResult = PCResult + 4;
     end
 
 endmodule

@@ -23,29 +23,38 @@
 module Top_tb( );
 
   reg Clk, Rst;
-  wire [31:0]Instruction;
   wire [6:0] out7;
   wire [7:0] en_out; 
-  
-  Top Top_1(Rst, Clk, Instruction, out7, en_out);
+  Top Top_1(.Reset(Rst), .Clk(Clk), .out7(out7), .en_out(en_out));
   
   always begin //period is 10 ns! that is why we increment every 5 ns.
-    Clk <= 0;
-    #5;
-    Clk <= 1;
-    #5;
+    Clk = 0;
+    #10;
+    Clk = 1;
+    #10;
   end
   
-  initial begin
-    Rst <= 1;
-    //move 2 clk cycles ahead
+  initial begin //use non-blocking (=) for sequential logic
+   
     @(posedge Clk);
+     Rst <= 1;
+     #5 Rst <=1;
+     
     @(posedge Clk);
-    #2; // do this so RST and Clk do not change at same time. 
-    Rst <= 0;
+    #5 Rst <= 0;
+    
     @(posedge Clk);
-    //#500;
-    //#2;
-    //Rst <= 1;
+     Rst <= 1;
+     #5 Rst <=1;
+     
+    @(posedge Clk);
+    #5 Rst <= 0;
+    
+    @(posedge Clk);
+     Rst <= 1;
+     #5 Rst <=1;
+     
+    @(posedge Clk);
+    #5 Rst <= 0;
   end
 endmodule;

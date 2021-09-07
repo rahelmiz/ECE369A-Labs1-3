@@ -20,15 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Top(Reset, Clk, Instruction, out7, en_out);
+module Top(Reset, Clk, out7, en_out);
     input Reset, Clk;
-    output [31:0]Instruction;
+    wire [31:0] Instruction;
     output [6:0] out7; //seg a, b, ... g
     output [7:0] en_out;
     wire ClkOut;
-    
+    wire [15:0] PCResult;
     ClkDiv ClkDiv_1(Clk, Reset, ClkOut);
-    InstructionFetchUnit InstrucFetch_1(Reset, ClkOut, Instruction);
-    Two4DigitDisplay Display_1(Clk, Instruction[15:0], Instruction[31:16], out7, en_out);
+    InstructionFetchUnit InstructionFetchUnit_1(.Reset(Reset), .Clk(ClkOut), .Instruction(Instruction), .PCResult(PCResult));
+    Two4DigitDisplay Display_1(Clk, Instruction[15:0], PCResult[15:0], out7, en_out);
     
 endmodule

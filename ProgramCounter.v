@@ -32,12 +32,12 @@ module ProgramCounter(Address, PCResult, Reset, Clk);
 	output reg [31:0] PCResult;
 
     /* Please fill in the implementation here... */
-    
-    always @(posedge Clk)
+    //this is sequential, so nonblocking! sequential: store on every clk edge!!!
+    always @(posedge Clk, posedge Reset)
     begin
         if (Reset == 1)
         begin    
-            PCResult = 0;
+            PCResult <= 32'd0;
         end
         else
         begin

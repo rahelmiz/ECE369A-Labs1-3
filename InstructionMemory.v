@@ -50,9 +50,7 @@ module InstructionMemory(Address, Instruction);
      
      always @(Address)
      begin
-        assign Instruction = memory[Address[8:2]];
+        Instruction = memory[Address[8:2]];
      end 
-    
-    
     
 endmodule
