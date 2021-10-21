@@ -44,8 +44,7 @@ module InstructionMemory(Address, Instruction);
     //initialize memory 
     integer i;
     initial begin
-        for (i = 0; i < 127; i = i + 1)
-            memory[i] = 3*i;
+        $readmemh("C:/Users/econn/OneDrive/Documents/College/ECE369Mem/sum_of_array_instructionMem.mem", memory);
      end
      
      always @(Address)
